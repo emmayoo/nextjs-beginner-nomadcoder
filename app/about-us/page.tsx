@@ -3,5 +3,5 @@ export const metadata = {
 };
 
 export default function AboutUs() {
-  return <div>About Us!</div>;
+  return <h1>About Us!</h1>;
 }
