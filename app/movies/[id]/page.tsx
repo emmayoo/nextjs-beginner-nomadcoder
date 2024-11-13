@@ -1,24 +1,26 @@
+import { API_URL } from "../../(home)/page.tsx";
+
+async function getMovie(id: string) {
+  console.log(`Fetching movies: ${Date.now()}`);
+  await new Promise((resolve) => setTimeout(resolve, 5000));
+  const response = await fetch(`${API_URL}/${id}`);
+  return response.json();
+}
+
+async function getVideos(id: string) {
+  console.log(`Fetching videos: ${Date.now()}`);
+  await new Promise((resolve) => setTimeout(resolve, 5000));
+  const response = await fetch(`${API_URL}/${id}/videos`);
+  return response.json();
+}
+
 export default async function MovieDetail({
   params,
-  searchParams,
 }: {
   params: Promise<{ id: string }>;
-  searchParams: Promise<Record<string, string>>;
 }) {
   const id = (await params).id;
-  const queryString = await searchParams;
-  const qs: string[] = [];
-  for (const key in queryString) {
-    qs.push(`${key}: ${queryString[key]}`);
-  }
-  return (
-    <div>
-      <h1>Movie Detail {id}</h1>
-      <ul>
-        {qs.map((v, i) => (
-          <ol key={i}>{v}</ol>
-        ))}
-      </ul>
-    </div>
-  );
+  const [movie, videos] = await Promise.all([getMovie(id), getVideos(id)]);
+
+  return <h1>{movie.title}</h1>;
 }
