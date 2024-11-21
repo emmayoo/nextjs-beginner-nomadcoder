@@ -28,7 +28,7 @@ npm install react@latest next@latest react-dom@latest
 * `localhost:3000/about-us` 로 접근하기 위해서, `app/about-us/page.tsx` 파일 만들면 됨
 * `not-found.tsx`: 404 (Not Found) 에러 코드 발생 시, 보여주는 페이지
 * `loading.tsx`: 로딩 페이지
-* `error.tsx`: 로딩 페이지 ("use client";)
+* `error.tsx`: 에러 페이지 ("use client";)
 
 ## Hook
 ### client side
